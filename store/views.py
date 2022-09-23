@@ -5,8 +5,13 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
+
 from .models import Category, Product
 from .serializers import CategorySerializer, ProductSerializer
+
+# class ProductViewSet(ModelViewSet):
+
 
 class ProductList(APIView):
     def get(self, request):
@@ -38,6 +43,8 @@ class ProductDetail(APIView):
         product = get_object_or_404(Product, pk=1)
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    
 
 
 @api_view(['GET', 'POST'])
