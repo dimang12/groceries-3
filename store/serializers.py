@@ -5,9 +5,12 @@ from rest_framework import serializers
 from store.models import Category, Product
 
 class CategorySerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Category
-        fields = ["id", "cateName"]
+        fields = ["id", "cateName", "productsCount"]
+    
+    productsCount = serializers.IntegerField(read_only=True)
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
