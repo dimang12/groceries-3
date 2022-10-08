@@ -2,7 +2,7 @@ from dataclasses import field, fields
 from operator import mod
 from pyexpat import model
 from rest_framework import serializers
-from store.models import Category, Product
+from store.models import Category, Product, Review
 
 class CategorySerializer(serializers.ModelSerializer):
     
@@ -34,3 +34,8 @@ class ProductSerializer(serializers.ModelSerializer):
         instance.proName = validate_data.get('proName')
         instance.save()
         return instance
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['id', 'reviewName', 'reviewDescription', 'productId', 'reviewedDate']

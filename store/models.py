@@ -1,3 +1,7 @@
+from datetime import datetime
+from email.policy import default
+from sqlite3 import Date
+from datetime import date
 from django.db import models
 
 # Create your models here.
@@ -52,3 +56,9 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.proName
+
+class Review(models.Model):
+    productId = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    reviewName = models.CharField(max_length=225, default='')
+    reviewDescription = models.TextField(null=True, default='')
+    reviewedDate = models.DateTimeField(default=datetime.today)
